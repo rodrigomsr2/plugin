@@ -111,7 +111,12 @@ abstract class base_active_record implements active_record
     {
         global $DB;
 
+        console_log("find_one")
+        console_log($DB)
+
         $row = $DB->get_record(static::get_table_name(), $conditions);
+
+        console_log($row)
 
         if ( $row )
         {
@@ -123,6 +128,8 @@ abstract class base_active_record implements active_record
             }
 
             $record->__is_new_record = false;
+
+            console_log($record)
 
             return $record;
         }
