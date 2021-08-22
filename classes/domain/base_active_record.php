@@ -54,8 +54,8 @@ abstract class base_active_record implements active_record
     {
         global $DB;
 
-        console_log("base_active_record_DB");
-        console_log($DB);
+        static::console_log("base_active_record_DB");
+        static::console_log($DB);
 
         if ( $this->validate() )
         {
@@ -63,12 +63,12 @@ abstract class base_active_record implements active_record
 
             if ( ! $this->__is_new_record )
             {
-                console_log("base_active_record_1");
+                static::console_log("base_active_record_1");
                 return $DB->update_record(static::get_table_name(), $data);
             }
             else
             {
-                console_log("base_active_record_2");
+                static::console_log("base_active_record_2");
                 $pk = static::get_primary_key();
                 unset($data->$pk);
 
@@ -111,12 +111,12 @@ abstract class base_active_record implements active_record
     {
         global $DB;
 
-        console_log("find_one")
-        console_log($DB)
+        static::console_log("find_one")
+        static::console_log($DB)
 
         $row = $DB->get_record(static::get_table_name(), $conditions);
 
-        console_log($row)
+        static::console_log($row)
 
         if ( $row )
         {
@@ -129,7 +129,7 @@ abstract class base_active_record implements active_record
 
             $record->__is_new_record = false;
 
-            console_log($record)
+            static::console_log($record)
 
             return $record;
         }
