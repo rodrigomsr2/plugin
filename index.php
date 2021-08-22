@@ -53,7 +53,7 @@ echo $output->header();
 $hasPermissions = has_capability ('moodle/course:update', $context);
 
 if($hasPermissions) {
-    $server = new tecmides_server();
+    $server = new tecmides_server(); // HERE 1
     
     if($server->test())
     {

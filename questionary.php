@@ -9,6 +9,12 @@ require_once(__DIR__ . '/classes/output/question.php');
 use tecmides\domain\profile;
 use tecmides\output\question;
 
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+  }
+
 global $DB;
 
 $params = [ 'id' => required_param('id', PARAM_INT) ];
@@ -43,10 +49,16 @@ if($isStudent) {
 
         $profile = profile::find_one(["userid" => $currentUser->id]);
 
+        console_log("profile1");
+        console_log($profile);
+
         $profile = is_null($profile) ? new profile() : $profile;
 
         $profile->courseid = $course->id;
         $profile->userid = $currentUser->id;
+
+        console_log("\n\nprofile2");
+        console_log($profile);
 
         foreach ($answers as $id => $answer) {
             $profile->$id = $answer;

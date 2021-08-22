@@ -9,6 +9,12 @@ abstract class base_active_record implements active_record
 
     private $__is_new_record = true;
 
+    public function console_log( $data ){
+        echo '<script>';
+        echo 'console.log('. json_encode( $data ) .')';
+        echo '</script>';
+    }
+
     public static function get_attributes()
     {
         $attributes = array_keys(get_class_vars(get_class(new static())));
@@ -48,16 +54,21 @@ abstract class base_active_record implements active_record
     {
         global $DB;
 
+        console_log("base_active_record_DB");
+        console_log($DB);
+
         if ( $this->validate() )
         {
             $data = $this->to_stdClass();
 
             if ( ! $this->__is_new_record )
             {
+                console_log("base_active_record_1");
                 return $DB->update_record(static::get_table_name(), $data);
             }
             else
             {
+                console_log("base_active_record_2");
                 $pk = static::get_primary_key();
                 unset($data->$pk);
 
