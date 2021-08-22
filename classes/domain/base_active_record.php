@@ -9,7 +9,7 @@ abstract class base_active_record implements active_record
 
     private $__is_new_record = true;
 
-    public function console_log( $data ){
+    public static function console_log( $data ){
         echo '<script>';
         echo 'console.log('. json_encode( $data ) .')';
         echo '</script>';
