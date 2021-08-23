@@ -64,7 +64,9 @@ abstract class base_active_record implements active_record
             if ( ! $this->__is_new_record )
             {
                 console_log("base_active_record_1");
-                return $DB->update_record(static::get_table_name(), $data);
+                $teste = $DB->update_record(static::get_table_name(), $data);
+                console_log($teste);
+                return $teste;
             }
             else
             {
@@ -111,19 +113,7 @@ abstract class base_active_record implements active_record
     {
         global $DB;
 
-        echo '<script>';
-        echo 'console.log('. json_encode( "find_one" ) .')';
-        echo '</script>';
-
-        echo '<script>';
-        echo 'console.log('. json_encode( $DB ) .')';
-        echo '</script>';
-
         $row = $DB->get_record(static::get_table_name(), $conditions);
-
-        echo '<script>';
-        echo 'console.log('. json_encode( $row ) .')';
-        echo '</script>';
 
         if ( $row )
         {
@@ -135,10 +125,6 @@ abstract class base_active_record implements active_record
             }
 
             $record->__is_new_record = false;
-
-            echo '<script>';
-        echo 'console.log('. json_encode( $record ) .')';
-        echo '</script>';
 
             return $record;
         }
