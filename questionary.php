@@ -49,16 +49,10 @@ if($isStudent) {
 
         $profile = profile::find_one(["userid" => $currentUser->id]);
 
-        console_log("profile1");
-        console_log($profile);
-
         $profile = is_null($profile) ? new profile() : $profile;
 
         $profile->courseid = $course->id;
         $profile->userid = $currentUser->id;
-
-        console_log("\n\nprofile2");
-        console_log($profile);
 
         foreach ($answers as $id => $answer) {
             $profile->$id = $answer;

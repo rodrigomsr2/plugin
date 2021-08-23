@@ -49,11 +49,19 @@ $PAGE->set_pagelayout('report');
 $output = $PAGE->get_renderer('report_tecmides');
 
 echo $output->header();
+    
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+  }
 
 $hasPermissions = has_capability ('moodle/course:update', $context);
 
 if($hasPermissions) {
     $server = new tecmides_server(); // HERE 1
+    
+    console_log($server);
     
     if($server->test())
     {

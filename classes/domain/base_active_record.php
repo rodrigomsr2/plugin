@@ -54,23 +54,17 @@ abstract class base_active_record implements active_record
     {
         global $DB;
 
-        console_log("base_active_record_DB");
-        console_log($DB);
-
         if ( $this->validate() )
         {
             $data = $this->to_stdClass();
 
             if ( ! $this->__is_new_record )
             {
-                console_log("base_active_record_1");
                 $teste = $DB->update_record(static::get_table_name(), $data);
-                console_log($teste);
                 return $teste;
             }
             else
             {
-                console_log("base_active_record_2");
                 $pk = static::get_primary_key();
                 unset($data->$pk);
 
