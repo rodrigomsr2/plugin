@@ -15,6 +15,12 @@ class tree_tecmides_model implements tecmides_model {
         return $CFG->TecmidesWebserviceURL . "/" . TREE_MODEL_CONFIG;
     }
 
+    public function console_log( $data ){
+        echo '<script>';
+        echo 'console.log('. json_encode( $data ) .')';
+        echo '</script>';
+    }
+
     public function get_model_contribute_url()
     {
         return $this->get_model_base_url() . "/contribute";
@@ -68,6 +74,9 @@ class tree_tecmides_model implements tecmides_model {
         $sql = sprintf("SELECT i.userid, i.courseid, %s, grade FROM %s as i", implode(",", $this->get_model_attributes_names()), ACTIVITY_TABLE);
 
         $data = $DB->get_records_sql($sql);
+
+        console_log("tree_tecmides_model");
+        console_log($data);
 
         $instances = array_values($data);
         $attributes = $this->get_model_attributes_definition();
