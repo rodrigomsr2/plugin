@@ -46,8 +46,9 @@ class activity extends base_active_record
     {
         $profiles = profile::find_all([ "courseid" => $courseid ]);
 
-        console_log("profiles");
-        console_log($profiles);
+        const $profiles_str = "profiles";
+        self::console_log($profiles_str);
+        self::console_log($profiles);
 
         if ( count($profiles) <= 0 )
         {
