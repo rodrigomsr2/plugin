@@ -30,6 +30,12 @@ class activity extends base_active_record
 
     }
 
+    public static console_log( $data ){
+        echo '<script>';
+        echo 'console.log('. json_encode( $data ) .')';
+        echo '</script>';
+    }
+
     public static function get_primary_key()
     {
         return "id";
@@ -39,6 +45,9 @@ class activity extends base_active_record
     public static function import( $courseid )
     {
         $profiles = profile::find_all([ "courseid" => $courseid ]);
+
+        console_log("profiles");
+        console_log($profiles);
 
         if ( count($profiles) <= 0 )
         {
