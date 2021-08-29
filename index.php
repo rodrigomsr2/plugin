@@ -58,11 +58,11 @@ function console_log( $data ){
 
 $hasPermissions = has_capability ('moodle/course:update', $context);
 
-// if($hasPermissions) {
+if($hasPermissions) {
     $server = new tecmides_server(); // HERE 1
     
-    if($server->test())
-    {
+    // if($server->test())
+    // {
         activity::import($course->id);
         
         $rule_analysis_students = new analysis_rule_tecmides_model(get_students($course->id), get_rule_model_classification_data($server));
