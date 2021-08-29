@@ -61,6 +61,7 @@ abstract class base_active_record implements active_record
             if ( ! $this->__is_new_record )
             {
                 $teste = $DB->update_record(static::get_table_name(), $data);
+                console_log(static::get_table_name());
                 return $teste;
             }
             else

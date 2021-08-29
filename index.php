@@ -58,10 +58,8 @@ function console_log( $data ){
 
 $hasPermissions = has_capability ('moodle/course:update', $context);
 
-if($hasPermissions) {
+// if($hasPermissions) {
     $server = new tecmides_server(); // HERE 1
-    
-    console_log($server);
     
     if($server->test())
     {
@@ -85,10 +83,10 @@ if($hasPermissions) {
         render_dashboards($output, [$discouraged_students_chart, $discouraged_students_list, $approved_students_chart]);
 
         echo "</div>";
-    }
-    else {
-        \core\notification::error(get_string("message_servernotfound", "report_tecmides"));
-    }
+    // }
+    // else {
+    //     \core\notification::error(get_string("message_servernotfound", "report_tecmides"));
+    // }
 }
 else {
     \core\notification::error(get_string("message_needtobeteacher", "report_tecmides"));
