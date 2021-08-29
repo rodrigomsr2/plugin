@@ -30,12 +30,6 @@ class activity extends base_active_record
 
     }
 
-    public static console_log( $data ){
-        echo '<script>';
-        echo 'console.log('. json_encode( $data ) .')';
-        echo '</script>';
-    }
-
     public static function get_primary_key()
     {
         return "id";
@@ -46,18 +40,20 @@ class activity extends base_active_record
     {
         $profiles = profile::find_all([ "courseid" => $courseid ]);
 
-        const $profiles_str = "profiles";
-        self::console_log($profiles_str);
-        self::console_log($profiles);
-
         if ( count($profiles) <= 0 )
         {
             return false;
         }
 
+        print_r($profiles);
+
         $user_counters = self::get_user_counters($profiles);
         $list_counters = self::get_list_counters($user_counters);
         $quartiles = self::generate_quartiles($list_counters);
+
+        print_r($user_counters);
+        print_r($list_counters);
+        print_r($quartiles);
 
         foreach ( $user_counters as $userid => $counters )
         {
