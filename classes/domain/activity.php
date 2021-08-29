@@ -45,15 +45,20 @@ class activity extends base_active_record
             return false;
         }
 
+        print_r("\nprofiles: ")
         print_r($profiles);
 
         $user_counters = self::get_user_counters($profiles);
         $list_counters = self::get_list_counters($user_counters);
         $quartiles = self::generate_quartiles($list_counters);
-
+        
+        print_r("\nuser_counters")
         print_r($user_counters);
+        print_r("\nlist_counters")
         print_r($list_counters);
+        print_r("\nquartiles")
         print_r($quartiles);
+        print_r("\n")
 
         foreach ( $user_counters as $userid => $counters )
         {
