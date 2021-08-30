@@ -45,6 +45,8 @@ class activity extends base_active_record
             return false;
         }
 
+        echo '1';
+
         $user_counters = self::get_user_counters($profiles);
         $list_counters = self::get_list_counters($user_counters);
         $quartiles = self::generate_quartiles($list_counters);
