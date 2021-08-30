@@ -38,18 +38,20 @@ class activity extends base_active_record
 
     public static function import( $courseid )
     {
+        var_dump($courseid);
         $profiles = profile::find_all([ "courseid" => $courseid ]);
-
+        var_dump($courseid);
         if ( count($profiles) <= 0 )
         {
             return false;
         }
-
-        echo '1';
+        var_dump($courseid);
+        
 
         $user_counters = self::get_user_counters($profiles);
         $list_counters = self::get_list_counters($user_counters);
         $quartiles = self::generate_quartiles($list_counters);
+        var_dump($courseid);
 
         foreach ( $user_counters as $userid => $counters )
         {
