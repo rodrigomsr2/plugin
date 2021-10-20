@@ -41,16 +41,16 @@ class activity extends base_active_record
         $profiles = profile::find_all([ "courseid" => $courseid ]);
         if ( count($profiles) <= 0 )
         {
-            var_dump("1" + $courseid);
+            var_dump("1: " . $courseid);
             return false;
         }
-        var_dump("2" + $courseid);
+        var_dump("2: " . $courseid);
         
 
         $user_counters = self::get_user_counters($profiles);
         $list_counters = self::get_list_counters($user_counters);
         $quartiles = self::generate_quartiles($list_counters);
-        var_dump("3" + $courseid);
+        var_dump("3: " . $courseid);
 
         foreach ( $user_counters as $userid => $counters )
         {
